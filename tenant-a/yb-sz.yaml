@@ -9,8 +9,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: gitops-yb-sz
   source:
-    path: stable/yugabyte
-    repoURL: 'https://github.com/yugabyte/charts'
+    path: yb
+    repoURL: 'https://github.com/vmeet24/yb-eks'
     targetRevision: HEAD    
     helm:
       parameters:
@@ -45,7 +45,7 @@ spec:
         - name: storage.tserver.storageClass
           value: 'hostpath'
         - name: useOldPodDisruptionBudget
-          value: 'true'
+          value: 'false'
   project: default
   syncPolicy:
     automated:
