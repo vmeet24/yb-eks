@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitops-yb
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitops-bot
+  namespace: gitops-yb
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra-test
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: yb-mz-bot-role
+  namespace: infra-test
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: gitops-bot
+  namespace: gitops-yb  
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra-test
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: yb-mz-bot-role
+  namespace: infra-test
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: gitops-bot
+  namespace: gitops-yb  
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra-test
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: yb-mz-bot-role
+  namespace: infra-test
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: gitops-bot
+  namespace: gitops-yb  
