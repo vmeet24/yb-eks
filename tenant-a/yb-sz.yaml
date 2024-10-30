@@ -15,9 +15,9 @@ spec:
     helm:
       parameters:
         - name: replicas.master
-          value: '3'
+          value: '1'
         - name: replicas.tserver
-          value: '3'
+          value: '1'
         - name: storage.master.count
           value: '1'
         - name: storage.tserver.count
@@ -41,11 +41,9 @@ spec:
         - name: Image.tag
           value: '2024.1.3.0-b105'
         - name: storage.master.storageClass
-          value: 'hostpath'
+          value: 'yb-storage'
         - name: storage.tserver.storageClass
-          value: 'hostpath'
-        - name: useOldPodDisruptionBudget
-          value: 'false'
+          value: 'yb-storage'
   project: default
   syncPolicy:
     automated:
