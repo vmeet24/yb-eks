@@ -10,9 +10,9 @@ spec:
     # The namespace the application belongs to.
     namespace: argocd
   source:
-    repoURL: 'https://github.com/philips-internal/ix-component-physiodata-storage'
-    path: Deployments/ComponentTestApplicationSet/infra/yugabyte-eks/tenant-a/
-    targetRevision: genesis/eks
+    repoURL: 'https://github.com/vmeet24/yb-eks'
+    path: tenant-a
+    targetRevision: HEAD
     directory:
       recurse: true    
   # The project the application belongs to.
