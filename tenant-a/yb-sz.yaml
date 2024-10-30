@@ -45,7 +45,7 @@ spec:
         - name: storage.tserver.storageClass
           value: 'hostpath'
         - name: useOldPodDisruptionBudget
-          value: 'false'
+          value: 'true'
   project: default
   syncPolicy:
     automated:
