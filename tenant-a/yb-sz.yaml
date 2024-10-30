@@ -26,6 +26,10 @@ spec:
           value: '500m'
         - name: resource.tserver.requests.cpu
           value: '2'
+        - name: resource.master.limit.cpu
+          value: '500m'
+        - name: resource.tserver.limit.cpu
+          value: '2'
         - name: gflags.master.placement_cloud
           value: 'ybcloud'
         - name: gflags.master.placement_region
