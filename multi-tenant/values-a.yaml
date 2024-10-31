@@ -20,7 +20,7 @@ spec:
         - name: AZ
           value: 'us-east-1a'
         - name: masterAddresses
-          value: 'yugabyte-master-yb-master-0.yugabyte-master-yb-masters.infra-test.svc.cluster.local:7100,yugabyte-master-yb-master-1.yugabyte-master-yb-masters.infra-test.svc.cluster.local:7100,yugabyte-master-yb-master-2.yugabyte-master-yb-masters.infra-test.svc.cluster.local:7100'
+          value: 'yb-mz-yugabyte-yb-master-0.yb-mz-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-mz-yugabyte-yb-master-1.yb-mz-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-mz-yugabyte-yb-master-2.yb-mz-yugabyte-yb-masters.infra-test.svc.cluster.local:7100'
         - name: storage.ephemeral
           value: 'false'
         - name: storage.tserver.count
