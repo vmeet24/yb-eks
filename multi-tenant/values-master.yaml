@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yb-mz
+  name: yb-masters
   namespace: argocd
 spec:
   destination:
@@ -132,7 +132,7 @@ spec:
         - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
           value: 'kubernetes.io/hostname'
         - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
-          value: 'infra'
+          value: 'infra-test'
         - name: master.podLabels.tenant
           value: 'master'
         - name: preflight.skipAll

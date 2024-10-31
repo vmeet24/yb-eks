@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: yb-sz
+  name: yb-a
   namespace: argocd
 spec:
   destination:
@@ -120,7 +120,7 @@ spec:
         - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
           value: 'kubernetes.io/hostname'
         - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
-          value: 'infra'
+          value: 'infra-test'
         - name: tserver.podLabels.tenant
           value: 'tserver-a'
         - name: preflight.skipAll
