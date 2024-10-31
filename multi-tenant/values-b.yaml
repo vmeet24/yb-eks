@@ -48,9 +48,9 @@ spec:
         - name: gflags.tserver.placement_cloud
           value: 'aws'
         - name: gflags.tserver.placement_region
-          value: 'tenant-a'
+          value: 'tenant-b'
         - name: gflags.tserver.placement_zone
-          value: 'node-a'
+          value: 'node-b'
         - name: gflags.tserver.enable_ysql_conn_mgr
           value: 'true'
         - name: gflags.tserver.allowed_preview_flags_csv
