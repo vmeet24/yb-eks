@@ -13,133 +13,133 @@ spec:
     targetRevision: HEAD
     helm:
       parameters:
-        - name: yugabyte.isMultiAz
+        - name: isMultiAz
           value: 'true'
-        - name: yugabyte.oldNamingStyle
+        - name: oldNamingStyle
           value: 'false'
-        - name: yugabyte.AZ
+        - name: AZ
           value: 'us-east-1a'
-        - name: yugabyte.masterAddresses
+        - name: masterAddresses
           value: 'yugabyte-master-yb-master-0.yugabyte-master-yb-masters.infra.svc.cluster.local:7100,yugabyte-master-yb-master-1.yugabyte-master-yb-masters.infra.svc.cluster.local:7100,yugabyte-master-yb-master-2.yugabyte-master-yb-masters.infra.svc.cluster.local:7100'
-        - name: yugabyte.storage.ephemeral
+        - name: storage.ephemeral
           value: 'false'
-        - name: yugabyte.storage.master.count
+        - name: storage.master.count
           value: '1'
-        - name: yugabyte.storage.master.size
+        - name: storage.master.size
           value: '5Gi'
-        - name: yugabyte.storage.master.storageClass
+        - name: storage.master.storageClass
           value: 'yb-storage'
-        - name: yugabyte.replicas.master
+        - name: replicas.master
           value: '3'
-        - name: yugabyte.replicas.tserver
+        - name: replicas.tserver
           value: '0'
-        - name: yugabyte.replicas.totalMasters
+        - name: replicas.totalMasters
           value: '3'
-        - name: yugabyte.resource.master.requests.cpu
+        - name: resource.master.requests.cpu
           value: '2'
-        - name: yugabyte.resource.master.requests.memory
+        - name: resource.master.requests.memory
           value: '2Gi'
-        - name: yugabyte.resource.master.limits.cpu
+        - name: resource.master.limits.cpu
           value: '4'
-        - name: yugabyte.resource.master.limits.memory
+        - name: resource.master.limits.memory
           value: '4Gi'
-        - name: yugabyte.gflags.master.placement_cloud
+        - name: gflags.master.placement_cloud
           value: 'aws'
-        - name: yugabyte.gflags.master.placement_region
+        - name: gflags.master.placement_region
           value: 'tenant-master'
-        - name: yugabyte.gflags.master.placement_zone
+        - name: gflags.master.placement_zone
           value: 'node-master'
-        - name: yugabyte.enableLoadBalancer
+        - name: enableLoadBalancer
           value: 'false'
-        - name: yugabyte.serviceEndpoints[0].name
+        - name: serviceEndpoints[0].name
           value: 'yb-master-ui'
-        - name: yugabyte.serviceEndpoints[0].type
+        - name: serviceEndpoints[0].type
           value: 'LoadBalancer'
-        - name: yugabyte.serviceEndpoints[0].scope
+        - name: serviceEndpoints[0].scope
           value: 'AZ'
-        - name: yugabyte.serviceEndpoints[0].app
+        - name: serviceEndpoints[0].app
           value: 'yb-master'
-        - name: yugabyte.serviceEndpoints[0].ports.http-ui
+        - name: serviceEndpoints[0].ports.http-ui
           value: '7000'
-        - name: yugabyte.serviceEndpoints[1].name
+        - name: serviceEndpoints[1].name
           value: 'yb-tserver-service'
-        - name: yugabyte.serviceEndpoints[1].type
+        - name: serviceEndpoints[1].type
           value: 'LoadBalancer'
-        - name: yugabyte.serviceEndpoints[1].scope
+        - name: serviceEndpoints[1].scope
           value: 'AZ'
-        - name: yugabyte.serviceEndpoints[1].app
+        - name: serviceEndpoints[1].app
           value: 'yb-tserver'
-        - name: yugabyte.serviceEndpoints[1].ports.tcp-yql-port
+        - name: serviceEndpoints[1].ports.tcp-yql-port
           value: '9042'
-        - name: yugabyte.serviceEndpoints[1].ports.tcp-yedis-port
+        - name: serviceEndpoints[1].ports.tcp-yedis-port
           value: '6379'
-        - name: yugabyte.serviceEndpoints[1].ports.tcp-ysql-port
+        - name: serviceEndpoints[1].ports.tcp-ysql-port
           value: '5433'
-        - name: yugabyte.serviceEndpoints[1].ports.tcp-tserver-ui-port
+        - name: serviceEndpoints[1].ports.tcp-tserver-ui-port
           value: '9000'
-        - name: yugabyte.serviceEndpoints[2].name
+        - name: serviceEndpoints[2].name
           value: 'yugabyted-ui-service'
-        - name: yugabyte.serviceEndpoints[2].type
+        - name: serviceEndpoints[2].type
           value: 'LoadBalancer'
-        - name: yugabyte.serviceEndpoints[2].scope
+        - name: serviceEndpoints[2].scope
           value: 'AZ'
-        - name: yugabyte.serviceEndpoints[2].app
+        - name: serviceEndpoints[2].app
           value: 'yb-master'
-        - name: yugabyte.serviceEndpoints[2].ports.yugabyted-ui
+        - name: serviceEndpoints[2].ports.yugabyted-ui
           value: '15433'
-        - name: yugabyte.Services[0].name
+        - name: Services[0].name
           value: 'yb-masters'
-        - name: yugabyte.Services[0].label
+        - name: Services[0].label
           value: 'yb-master'
-        - name: yugabyte.Services[0].skipHealthChecks
+        - name: Services[0].skipHealthChecks
           value: 'false'
-        - name: yugabyte.Services[0].memory_limit_to_ram_ratio
+        - name: Services[0].memory_limit_to_ram_ratio
           value: '0.85'
-        - name: yugabyte.Services[0].ports.http-ui
+        - name: Services[0].ports.http-ui
           value: '7000'
-        - name: yugabyte.Services[0].ports.tcp-rpc-port
+        - name: Services[0].ports.tcp-rpc-port
           value: '7100'
-        - name: yugabyte.Services[0].ports.yugabyted-ui
+        - name: Services[0].ports.yugabyted-ui
           value: '15433'
-        - name: yugabyte.serviceMonitor.enabled
+        - name: serviceMonitor.enabled
           value: 'true'
-        - name: yugabyte.serviceMonitor.interval
+        - name: serviceMonitor.interval
           value: '30s'
-        - name: yugabyte.serviceMonitor.master.enabled
+        - name: serviceMonitor.master.enabled
           value: 'true'
-        - name: yugabyte.serviceMonitor.master.port
+        - name: serviceMonitor.master.port
           value: 'http-ui'
-        - name: yugabyte.serviceMonitor.master.path
+        - name: serviceMonitor.master.path
           value: '/prometheus-metrics'
-        - name: yugabyte.serviceMonitor.tserver.enabled
+        - name: serviceMonitor.tserver.enabled
           value: 'true'
-        - name: yugabyte.serviceMonitor.tserver.port
+        - name: serviceMonitor.tserver.port
           value: 'http-ui'
-        - name: yugabyte.serviceMonitor.tserver.path
+        - name: serviceMonitor.tserver.path
           value: '/prometheus-metrics'
-        - name: yugabyte.serviceMonitor.ysql.enabled
+        - name: serviceMonitor.ysql.enabled
           value: 'true'
-        - name: yugabyte.serviceMonitor.ysql.port
+        - name: serviceMonitor.ysql.port
           value: 'http-ysql-met'
-        - name: yugabyte.serviceMonitor.ysql.path
+        - name: serviceMonitor.ysql.path
           value: '/prometheus-metrics'
-        - name: yugabyte.master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].key
+        - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].key
           value: 'tenant'
-        - name: yugabyte.master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
+        - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
           value: 'In'
-        - name: yugabyte.master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].values[0]
+        - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].values[0]
           value: 'master'
-        - name: yugabyte.master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
+        - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
           value: 'kubernetes.io/hostname'
-        - name: yugabyte.master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
+        - name: master.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
           value: 'infra'
-        - name: yugabyte.master.podLabels.tenant
+        - name: master.podLabels.tenant
           value: 'master'
-        - name: yugabyte.preflight.skipAll
+        - name: preflight.skipAll
           value: 'false'
-        - name: yugabyte.preflight.skipBind
+        - name: preflight.skipBind
           value: 'false'
-        - name: yugabyte.preflight.skipUlimit
+        - name: preflight.skipUlimit
           value: 'true'
   project: default
   syncPolicy:
