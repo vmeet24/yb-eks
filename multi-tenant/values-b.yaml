@@ -13,6 +13,8 @@ spec:
     targetRevision: HEAD
     helm:
       parameters:
+        - name: Image.tag
+          value: '2.23.0.0-b710'
         - name: isMultiAz
           value: 'true'
         - name: oldNamingStyle
