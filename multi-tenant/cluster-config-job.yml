@@ -34,7 +34,7 @@ spec:
                      $(nc -z -w 1 yb-master-yugabyte-yb-master-1.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100; echo $?) -eq 0 -a  \
                      $(nc -z -w 1 yb-master-yugabyte-yb-master-2.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100; echo $?) -eq 0 ]; then
                   echo "instance seems up; applying the config change"
-                  kubectl exec -n infra-test yb-master-yugabyte-yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-1.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-2.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100 modify_placement_info aws.tenant-master.node-master $RF"
+                  kubectl exec -n infra-test yb-master-yugabyte-yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-1.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-2.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100 modify_placement_info aws.tenant-master.node-master,aws.tenant-master.node-master,aws.tenant-master.node-master $RF"
                   if [ $? -eq 0 ]; then 
                     echo "successfully applied config change"
                     break
