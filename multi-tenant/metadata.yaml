@@ -8,7 +8,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: gitops-bot
-  namespace: infta-test
+  namespace: infra-test
 ---
 # apiVersion: v1
 # kind: Namespace
