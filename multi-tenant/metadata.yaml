@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: infta-test
+  name: infra-test
 ---
 apiVersion: v1
 kind: ServiceAccount
