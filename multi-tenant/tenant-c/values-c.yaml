@@ -1,0 +1,138 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: yb-c
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infra-test
+  source:
+    path: yb
+    repoURL: 'https://github.com/vmeet24/yb-eks'
+    targetRevision: HEAD
+    helm:
+      parameters:
+        - name: Image.tag
+          value: '2.23.0.0-b710'
+        - name: isMultiAz
+          value: 'true'
+        - name: oldNamingStyle
+          value: 'false'
+        - name: AZ
+          value: 'us-east-1a'
+        - name: masterAddresses
+          value: 'yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-1.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100,yb-master-yugabyte-yb-master-2.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100'
+        - name: storage.ephemeral
+          value: 'false'
+        - name: storage.tserver.count
+          value: '1'
+        - name: storage.tserver.size
+          value: '10Gi'
+        - name: storage.tserver.storageClass
+          value: 'yb-storage'
+        - name: replicas.master
+          value: '0'
+        - name: replicas.tserver
+          value: '3'
+        - name: replicas.totalMasters
+          value: '3'
+        - name: resource.tserver.requests.cpu
+          value: '4'
+        - name: resource.tserver.requests.memory
+          value: '6Gi'
+        - name: resource.tserver.limits.cpu
+          value: '4'
+        - name: resource.tserver.limits.memory
+          value: '8Gi'
+        - name: gflags.tserver.placement_cloud
+          value: 'aws'
+        - name: gflags.tserver.placement_region
+          value: 'tenant-c'
+        - name: gflags.tserver.placement_zone
+          value: 'node-c'
+        - name: gflags.tserver.enable_ysql_conn_mgr
+          value: 'true'
+        - name: gflags.tserver.allowed_preview_flags_csv
+          value: 'enable_ysql_conn_mgr'
+        - name: enableLoadBalancer
+          value: 'false'
+        - name: serviceEndpoints[0].name
+          value: 'yb-tserver-service'
+        - name: serviceEndpoints[0].type
+          value: 'LoadBalancer'
+        - name: serviceEndpoints[0].scope
+          value: 'AZ'
+        - name: serviceEndpoints[0].app
+          value: 'yb-tserver'
+        - name: serviceEndpoints[0].ports.tcp-yql-port
+          value: '9042'
+        - name: serviceEndpoints[0].ports.tcp-yedis-port
+          value: '6379'
+        - name: serviceEndpoints[0].ports.tcp-ysql-port
+          value: '5433'
+        - name: serviceEndpoints[0].ports.tcp-tserver-ui-port
+          value: '9000'
+        - name: Services[0].name
+          value: 'yb-tservers'
+        - name: Services[0].label
+          value: 'yb-tserver'
+        - name: Services[0].ports.http-ui
+          value: '9000'
+        - name: Services[0].ports.tcp-rpc-port
+          value: '9100'
+        - name: Services[0].ports.tcp-yql-port
+          value: '9042'
+        - name: Services[0].ports.tcp-yedis-port
+          value: '6379'
+        - name: Services[0].ports.tcp-ysql-port
+          value: '5433'
+        - name: Services[0].ports.http-ycql-met
+          value: '12000'
+        - name: Services[0].ports.http-yedis-met
+          value: '11000'
+        - name: Services[0].ports.http-ysql-met
+          value: '13000'
+        - name: Services[0].ports.grpc-ybc-port
+          value: '18018'
+        - name: Services[0].ports.yugabyted-ui
+          value: '15433'
+        - name: serviceMonitor.enabled
+          value: 'true'
+        - name: serviceMonitor.interval
+          value: '30s'
+        - name: serviceMonitor.tserver.enabled
+          value: 'true'
+        - name: serviceMonitor.tserver.port
+          value: 'http-ui'
+        - name: serviceMonitor.tserver.path
+          value: '/prometheus-metrics'
+        - name: serviceMonitor.ysql.enabled
+          value: 'true'
+        - name: serviceMonitor.ysql.port
+          value: 'http-ysql-met'
+        - name: serviceMonitor.ysql.path
+          value: '/prometheus-metrics'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].key
+          value: 'tenant'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
+          value: 'In'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].values[0]
+          value: 'tserver-c'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
+          value: 'kubernetes.io/hostname'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
+          value: 'infra-test'
+        - name: tserver.podLabels.tenant
+          value: 'tserver-c'
+        - name: preflight.skipAll
+          value: 'false'
+        - name: preflight.skipBind
+          value: 'false'
+        - name: preflight.skipUlimit
+          value: 'true'
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
