@@ -52,7 +52,7 @@ spec:
         - name: gflags.tserver.placement_zone
           value: 'node-a'
         - name: gflags.tserver.enable_ysql_conn_mgr
-          value: 'true'
+          value: 'false'
         - name: gflags.tserver.allowed_preview_flags_csv
           value: 'enable_ysql_conn_mgr'
         - name: enableLoadBalancer
