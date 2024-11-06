@@ -53,6 +53,8 @@ spec:
           value: 'node-a'
         - name: gflags.tserver.enable_ysql_conn_mgr
           value: 'true'
+        - name: gflags.tserver.ysql_conn_mgr_port
+          value: '5434'
         - name: gflags.tserver.allowed_preview_flags_csv
           value: 'enable_ysql_conn_mgr'
         - name: enableLoadBalancer
@@ -71,6 +73,8 @@ spec:
           value: '6379'
         - name: Services[0].ports.tcp-ysql-port
           value: '5433'
+        - name: Services[0].ports.conn-mgr-port
+          value: '5434'
         - name: Services[0].ports.http-ycql-met
           value: '12000'
         - name: Services[0].ports.http-yedis-met
