@@ -85,6 +85,32 @@ spec:
           value: '18018'
         - name: Services[0].ports.yugabyted-ui
           value: '15433'
+        - name: Services[0].name
+          value: 'yb-tservers'
+        - name: Services[0].label
+          value: 'yb-tserver' 
+        - name: Services[1].ports.http-ui
+          value: '9000'
+        - name: Services[1].ports.tcp-rpc-port
+          value: '9100'
+        - name: Services[1].ports.tcp-yql-port
+          value: '9042'
+        - name: Services[1].ports.tcp-yedis-port
+          value: '6379'
+        - name: Services[1].ports.tcp-ysql-port
+          value: '5433'
+        - name: Services[1].ports.conn-mgr-port
+          value: '5434'
+        - name: Services[1].ports.http-ycql-met
+          value: '12000'
+        - name: Services[1].ports.http-yedis-met
+          value: '11000'
+        - name: Services[1].ports.http-ysql-met
+          value: '13000'
+        - name: Services[1].ports.grpc-ybc-port
+          value: '18018'
+        - name: Services[1].ports.yugabyted-ui
+          value: '15433'
         - name: serviceMonitor.enabled
           value: 'true'
         - name: serviceMonitor.interval
