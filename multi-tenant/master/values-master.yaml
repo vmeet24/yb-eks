@@ -31,10 +31,16 @@ spec:
           value: '5Gi'
         - name: storage.master.storageClass
           value: 'yb-storage'
+        - name: storage.tserver.count
+          value: '1'
+        - name: storage.tserver.size
+          value: '10Gi'
+        - name: storage.tserver.storageClass
+          value: 'yb-storage'
         - name: replicas.master
           value: '3'
         - name: replicas.tserver
-          value: '0'
+          value: '3'
         - name: replicas.totalMasters
           value: '3'
         - name: resource.master.requests.cpu
@@ -45,6 +51,26 @@ spec:
           value: '4'
         - name: resource.master.limits.memory
           value: '4Gi'
+        - name: resource.tserver.requests.cpu
+          value: '4'
+        - name: resource.tserver.requests.memory
+          value: '6Gi'
+        - name: resource.tserver.limits.cpu
+          value: '4'
+        - name: resource.tserver.limits.memory
+          value: '8Gi'
+        - name: gflags.tserver.placement_cloud
+          value: 'aws'
+        - name: gflags.tserver.placement_region
+          value: 'tenant-master'
+        - name: gflags.tserver.placement_zone
+          value: 'node-master'
+        - name: gflags.tserver.enable_ysql_conn_mgr
+          value: 'true'
+        - name: gflags.tserver.ysql_conn_mgr_port
+          value: '5434'
+        - name: gflags.tserver.allowed_preview_flags_csv
+          value: 'enable_ysql_conn_mgr'
         - name: gflags.master.placement_cloud
           value: 'aws'
         - name: gflags.master.placement_region
@@ -53,42 +79,8 @@ spec:
           value: 'node-master'
         - name: enableLoadBalancer
           value: 'false'
-        - name: serviceEndpoints[0].name
-          value: 'yb-master-ui'
-        - name: serviceEndpoints[0].type
-          value: 'LoadBalancer'
-        - name: serviceEndpoints[0].scope
-          value: 'AZ'
-        - name: serviceEndpoints[0].app
-          value: 'yb-master'
-        - name: serviceEndpoints[0].ports.http-ui
-          value: '7000'
-        - name: serviceEndpoints[1].name
-          value: 'yb-tserver-service'
-        - name: serviceEndpoints[1].type
-          value: 'LoadBalancer'
-        - name: serviceEndpoints[1].scope
-          value: 'AZ'
-        - name: serviceEndpoints[1].app
-          value: 'yb-tserver'
-        - name: serviceEndpoints[1].ports.tcp-yql-port
-          value: '9042'
-        - name: serviceEndpoints[1].ports.tcp-yedis-port
-          value: '6379'
-        - name: serviceEndpoints[1].ports.tcp-ysql-port
-          value: '5433'
-        - name: serviceEndpoints[1].ports.tcp-tserver-ui-port
-          value: '9000'
-        - name: serviceEndpoints[2].name
-          value: 'yugabyted-ui-service'
-        - name: serviceEndpoints[2].type
-          value: 'LoadBalancer'
-        - name: serviceEndpoints[2].scope
-          value: 'AZ'
-        - name: serviceEndpoints[2].app
-          value: 'yb-master'
-        - name: serviceEndpoints[2].ports.yugabyted-ui
-          value: '15433'
+        - name: Services[0].ports.conn-mgr-port
+          value: '5434'
         - name: Services[0].name
           value: 'yb-masters'
         - name: Services[0].label
@@ -137,6 +129,18 @@ spec:
           value: 'infra-test'
         - name: master.podLabels.tenant
           value: 'master'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].key
+          value: 'tenant'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].operator
+          value: 'In'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].labelSelector.matchExpressions[0].values[0]
+          value: 'tserver-master'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].topologyKey
+          value: 'kubernetes.io/hostname'
+        - name: tserver.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution[0].namespaces[0]
+          value: 'infra-test'
+        - name: tserver.podLabels.tenant
+          value: 'tserver-master'
         - name: preflight.skipAll
           value: 'false'
         - name: preflight.skipBind
