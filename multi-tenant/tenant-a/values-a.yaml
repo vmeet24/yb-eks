@@ -85,10 +85,6 @@ spec:
           value: '18018'
         - name: Services[0].ports.yugabyted-ui
           value: '15433'
-        - name: Services[0].name
-          value: 'yb-tservers'
-        - name: Services[0].label
-          value: 'yb-tserver' 
         - name: serviceMonitor.enabled
           value: 'true'
         - name: serviceMonitor.interval

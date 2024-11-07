@@ -95,6 +95,10 @@ spec:
           value: '7100'
         - name: Services[0].ports.yugabyted-ui
           value: '15433'
+        - name: Services[1].name
+          value: 'yb-tservers'
+        - name: Services[1].label
+          value: 'yb-tserver' 
         - name: Services[1].ports.http-ui
           value: '9000'
         - name: Services[1].ports.tcp-rpc-port
