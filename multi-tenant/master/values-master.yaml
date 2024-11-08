@@ -71,6 +71,8 @@ spec:
           value: '5434'
         - name: gflags.tserver.allowed_preview_flags_csv
           value: 'enable_ysql_conn_mgr'
+        - name: gflags.tserver.ysql_max_connections
+          value: '300'
         - name: gflags.master.placement_cloud
           value: 'aws'
         - name: gflags.master.placement_region
