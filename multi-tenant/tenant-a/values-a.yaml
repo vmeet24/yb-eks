@@ -26,9 +26,9 @@ spec:
         - name: storage.ephemeral
           value: 'false'
         - name: storage.tserver.count
-          value: '1'
+          value: '2'
         - name: storage.tserver.size
-          value: '15Gi'
+          value: '10Gi'
         - name: storage.tserver.storageClass
           value: 'yb-storage'
         - name: replicas.master
