@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   generateName: yb-cluster-config-
-  namespace: infra-test
+  namespace: infra
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -30,9 +30,9 @@ spec:
               wt=5
               while true
               do
-                if [ $(nc -z -w 1 yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100; echo $?) -eq 0 -a ]; then
+                if [ $(nc -z -w 1 yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra.svc.cluster.local:7100; echo $?) -eq 0 -a ]; then
                   echo "instance seems up; applying the config change"
-                  kubectl exec -n infra-test yb-master-yugabyte-yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra-test.svc.cluster.local:7100 $RF"
+                  kubectl exec -n infra yb-master-yugabyte-yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-yugabyte-yb-master-0.yb-master-yugabyte-yb-masters.infra.svc.cluster.local:7100 $RF"
                   if [ $? -eq 0 ]; then 
                     echo "successfully applied config change"
                     break
