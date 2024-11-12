@@ -48,17 +48,17 @@ spec:
         - name: resource.master.requests.memory
           value: '2Gi'
         - name: resource.master.limits.cpu
-          value: '4'
+          value: '3'
         - name: resource.master.limits.memory
-          value: '4Gi'
+          value: '3Gi'
         - name: resource.tserver.requests.cpu
-          value: '4'
+          value: '2'
         - name: resource.tserver.requests.memory
-          value: '6Gi'
+          value: '3Gi'
         - name: resource.tserver.limits.cpu
-          value: '4'
+          value: '3'
         - name: resource.tserver.limits.memory
-          value: '8Gi'
+          value: '5Gi'
         - name: gflags.tserver.placement_cloud
           value: 'aws'
         - name: gflags.tserver.placement_region
