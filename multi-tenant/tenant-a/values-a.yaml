@@ -38,7 +38,7 @@ spec:
         - name: replicas.totalMasters
           value: '3'
         - name: resource.tserver.requests.cpu
-          value: '4'
+          value: '2'
         - name: resource.tserver.requests.memory
           value: '6Gi'
         - name: resource.tserver.limits.cpu
